@@ -1,0 +1,75 @@
+﻿@model IEnumerable<OnlineShoppingMVC.Models.Cart>
+
+@{
+    ViewBag.Title = "PostToCart";
+}
+
+<h2>PostToCart</h2>
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+<div align="center" style="background-color:black">
+
+    <form method="post" action="ProductList">
+        <center>
+            <img width="150" height="25" src="~/Images/Flipkart.png" />    &nbsp;
+            <input type="text" name="name" placeholder="Search Products" width="200" />    &nbsp;
+            <input type="submit" value="Search" /><br />
+        </center>
+    </form>
+</div><br />
+<div align="center">
+    <marquee direction="right" height="50" width="1000" bgcolor="mediumseagreen">
+        <h2 style="color:white">Welcome To My Shopping Cart</h2>
+    </marquee>
+</div>
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Picture)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                <img src="~/Images/@item.Picture" width="200" height="200" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "DeleteFromDB", new { id = item.ProductId })
+            </td>
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>*@
+        </tr>
+    }
+
+</table>
+<form method="post" action="DisplayCart">
+    <input type="submit" value="Back" />
+</form>
+

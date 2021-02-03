@@ -1,0 +1,119 @@
+﻿@model OnlineShoppingMVC.Models.Product
+
+@{
+    ViewBag.Title = "GetProductById";
+}
+
+<h2>Product Details</h2>
+
+<div align="center" style="background-color:aquamarine">
+
+    <form method="post" action="ProductList">
+        <center>
+            <img width="150" height="25" src="~/Images/Flipkart.png" />    &nbsp;
+            <input type="text" name="name" placeholder="Search Products" width="200" />    &nbsp;
+            <input type="submit" value="Search" /><br />
+        </center>
+    </form>
+</div><br />
+<div align="center">
+    <marquee direction="right" height="50" width="1000" bgcolor="mediumseagreen">
+        <h2 style="color:white">Welcome To My Shopping Cart</h2>
+    </marquee>
+</div>
+<br />
+@using (Html.BeginForm("AddCart", "Onlinemvc"))
+{
+    <div>
+        @*<h4>Product</h4>
+            <hr />*@
+
+        <dl class="dl-horizontal">
+            <dt>
+                <b>
+                    @Html.DisplayNameFor(model => model.CategoryId):
+                </b>
+
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CategoryId)
+
+            </dd>
+
+            <dt>
+                <b>
+                    @Html.DisplayNameFor(model => model.ProductName):
+                </b>
+
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ProductName)
+            </dd>
+
+            <dt>
+                <b>
+                    @Html.DisplayNameFor(model => model.Picture):
+                </b>
+
+            </dt>
+
+            <dd>
+                <img src="~/images/@Model.Picture" width="200" height="200" />
+            </dd>
+
+            <dt>
+                <b>
+                    @Html.DisplayNameFor(model => model.Price):
+                </b>
+
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+
+            <dt>
+                <b>
+                    @Html.DisplayNameFor(model => model.Quantity):
+                </b>
+
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Quantity)
+            </dd>
+
+            <dt>
+                <b>
+                    @Html.DisplayNameFor(model => model.Content):
+                </b>
+
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Content)
+            </dd>
+            <dt></dt>
+
+        </dl>
+        <form method="post" action="AddCart">
+            @Html.HiddenFor(model => model.ProductId)
+            @Html.HiddenFor(model => model.ProductName)
+            @Html.HiddenFor(model => model.Picture)
+            @Html.HiddenFor(model => model.Price)
+            @*<a href="DisplayCart">*@
+            <input type="submit" value="Add To Cart" />
+            @*</a>*@
+
+        </form>
+    </div>
+}
+
+@*<td>
+        @Html.ActionLink("Back to list","Index") |
+        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+    </td>*@
